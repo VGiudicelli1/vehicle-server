@@ -1,6 +1,7 @@
 package vehicle
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -21,14 +22,17 @@ func NewDeleteHandler(store storage.Store, logger *zap.Logger) *DeleteHandler {
 }
 
 func (d *DeleteHandler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
-	str := r.PathValue("id")
-	id, _ := strconv.ParseInt(str, 10, 64)
-	bool, _ := d.store.Vehicle().Delete(r.Context(), id)
-	print(bool)
-	if bool {
-		rw.WriteHeader(http.StatusNoContent)
+	idString := r.PathValue("id")
+	id, err := strconv.ParseInt(idString, 10, 64)
+	if err != nil {
+		//TODO Throw an error
 	}
-	if !bool {
+	isExist, _ := d.store.Vehicle().Delete(r.Context(), id)
+	if isExist {
+		rw.WriteHeader(http.StatusNoContent)
+		fmt.Printf("Vehicle Deleted")
+	} else {
 		rw.WriteHeader(http.StatusNotFound)
+		fmt.Printf("Vehicle Not Found")
 	}
 }
