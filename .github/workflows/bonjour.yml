@@ -6,11 +6,17 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - run: echo "Bonjour 👋"
-  checkout_cat:
+  cow_personalisation:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      - run: ls -l
-      - run: cat README.md
       - run: sudo apt-get update && sudo apt-get install cowsay
+      - run: cat README.md | cowsay
+  cow_prefab:
+    runs-on: ubuntu-22.04
+    container:
+      image: ghcr.io/cicd-lectures/gitpod:latest # !! latest !!
+      options: --user=root
+    steps:
+      - uses: actions/checkout@v4
       - run: cat README.md | cowsay 
