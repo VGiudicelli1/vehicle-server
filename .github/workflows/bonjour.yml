@@ -12,11 +12,21 @@ jobs:
       - uses: actions/checkout@v4
       - run: sudo apt-get update && sudo apt-get install cowsay
       - run: cat README.md | cowsay
-  cow_prefab:
+#  cow_prefab:
+#    runs-on: ubuntu-22.04
+#    container:
+#      image: ghcr.io/cicd-lectures/gitpod:latest # !! latest !!
+#      options: --user=root
+#    steps:
+#      - uses: actions/checkout@v4
+#      - run: cat README.md | cowsay 
+  cow_action:
     runs-on: ubuntu-22.04
-    container:
-      image: ghcr.io/cicd-lectures/gitpod:latest # !! latest !!
-      options: --user=root
     steps:
       - uses: actions/checkout@v4
-      - run: cat README.md | cowsay 
+      #- run: cat README.md | cowsay
+      - uses: Code-Hex/neo-cowsay-action@v1
+        with:
+          message: |
+            This is cowsay
+            Hello, World!!
