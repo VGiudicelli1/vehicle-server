@@ -25,8 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       #- run: cat README.md | cowsay
+      - name: Read package.json
+        id: readme
+        uses: juliangruber/read-file-action@v1
+        with:
+          path: ./README.md
       - uses: Code-Hex/neo-cowsay-action@v1
         with:
-          message: |
-            This is cowsay
-            Hello, World!!
+          message: steps.readme.outputs.content
