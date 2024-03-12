@@ -5,12 +5,14 @@ jobs:
   build_project:
     runs-on: ubuntu-22.04
     steps:
+      - uses: actions/checkout@v4
       - name: "Install Go"
         uses: actions/setup-go@v5
         id: setup_go
         with:
-          go-version: '1.22'
-
-      - name: "Echo installed version"
+          go-version-file: './go.mod'
+      - name: "Verify version"
         run: |
           echo "${{steps.setup_go.outputs.go-version}}"
+      - name: "build"
+        run: make all
