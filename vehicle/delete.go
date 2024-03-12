@@ -2,6 +2,7 @@ package vehicle
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/vgiudicelli1/vehicle-server/storage"
 	"go.uber.org/zap"
@@ -20,5 +21,14 @@ func NewDeleteHandler(store storage.Store, logger *zap.Logger) *DeleteHandler {
 }
 
 func (d *DeleteHandler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
-	http.Error(rw, "Not Implemented", http.StatusInternalServerError)
+	str := r.PathValue("id")
+	id, _ := strconv.ParseInt(str, 10, 64)
+	bool, _ := d.store.Vehicle().Delete(r.Context(), id)
+	print(bool)
+	if bool {
+		rw.WriteHeader(http.StatusNoContent)
+	}
+	if !bool {
+		rw.WriteHeader(http.StatusNotFound)
+	}
 }
