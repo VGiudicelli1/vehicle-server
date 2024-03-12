@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/cicd-lectures/vehicle-server/pkg/httputil"
-	"github.com/cicd-lectures/vehicle-server/storage"
-	"github.com/cicd-lectures/vehicle-server/storage/vehiclestore"
+	"github.com/vgiudicelli1/vehicle-server/pkg/httputil"
+	"github.com/vgiudicelli1/vehicle-server/storage"
+	"github.com/vgiudicelli1/vehicle-server/storage/vehiclestore"
 	"go.uber.org/zap"
 )
 

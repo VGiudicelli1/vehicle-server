@@ -7,10 +7,10 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/cicd-lectures/vehicle-server/pkg/httputil"
-	"github.com/cicd-lectures/vehicle-server/pkg/testutil"
-	"github.com/cicd-lectures/vehicle-server/storage/vehiclestore"
-	"github.com/cicd-lectures/vehicle-server/vehicle"
+	"github.com/vgiudicelli1/vehicle-server/pkg/httputil"
+	"github.com/vgiudicelli1/vehicle-server/pkg/testutil"
+	"github.com/vgiudicelli1/vehicle-server/storage/vehiclestore"
+	"github.com/vgiudicelli1/vehicle-server/vehicle"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

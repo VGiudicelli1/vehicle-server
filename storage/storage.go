@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"github.com/cicd-lectures/vehicle-server/storage/vehiclestore"
+	"github.com/vgiudicelli1/vehicle-server/storage/vehiclestore"
 )
 
 type Store interface {
