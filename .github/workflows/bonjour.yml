@@ -12,9 +12,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: ls -l
       - run: cat README.md
-      - name: Ship it
-        uses: mscoutermarsh/cowsays-action@master
-        with:
-          text: 'ship ship ship!'
-          color: 'red'
+      - run: apt-get update && apt-get install cowsay
       - run: cat README.md | cowsay 
