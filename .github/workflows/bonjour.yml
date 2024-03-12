@@ -24,7 +24,6 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-      #- run: cat README.md | cowsay
       - name: Read package.json
         id: readme
         uses: juliangruber/read-file-action@v1
