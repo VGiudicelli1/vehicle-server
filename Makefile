@@ -1,5 +1,5 @@
 .PHONY: all
-all: clean dist build
+all: clean dist build unit_test
 
 .PHONY: clean
 clean:
@@ -13,8 +13,9 @@ build: dist/server
 
 dist/server: dist
 	go build -o dist/server ./cmd/server/main.go
-
-
+unit_test:
+	go test -v -cover ./...
+	go test -v -count=1 --tags=integration ./app
 DB_CONTAINER_NAME=vehicle-server-dev
 POSTGRES_USER=vehicle-server
 POSTGRES_PASSWORD=secret
