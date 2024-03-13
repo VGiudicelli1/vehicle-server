@@ -13,7 +13,8 @@ build: dist/server
 
 dist/server: dist
 	go build -o dist/server ./cmd/server/main.go
-
+unit_test:
+	go test -v -cover ./...
 
 DB_CONTAINER_NAME=vehicle-server-dev
 POSTGRES_USER=vehicle-server

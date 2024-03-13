@@ -25,7 +25,7 @@ func (d *DeleteHandler) ServeHTTP(rw http.ResponseWriter, r *http.Request) {
 	idString := r.PathValue("id")
 	id, err := strconv.ParseInt(idString, 10, 64)
 	if err != nil {
-		//TODO Throw an error
+		http.Error(rw, "Bip Boup ID Non Valide", http.StatusBadRequest)
 	}
 	isExist, _ := d.store.Vehicle().Delete(r.Context(), id)
 	if isExist {
