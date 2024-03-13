@@ -1,8 +1,19 @@
 IMAGE?=vgiudicelli/vehicle-server
 TAG?=dev
+TAG_MESSAGE?="Default tag message"
 
 .PHONY: all
 all: clean dist build unit_test integration_test package
+
+.PHONY: release release_git release_docker
+release: release_git release_docker
+
+release_git: unit_test integration_test
+	git tag $(TAG) -a -m "$(TAG_MESSAGE)"
+	git push origin $(TAG)
+
+release_docker: package
+	docker image push $(IMAGE):$(TAG)
 
 .PHONY: package 
 package: build 
