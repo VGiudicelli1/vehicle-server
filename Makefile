@@ -1,4 +1,4 @@
-IMAGE?=VGiudicelli/vehicle-server
+IMAGE?=vgiudicelli/vehicle-server
 TAG?=dev
 
 .PHONY: all
