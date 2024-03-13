@@ -6,6 +6,7 @@ jobs:
   build_project:
     runs-on: ubuntu-22.04
     steps:
+      - run: echo "${{ github.ref_name }}"
       - uses: actions/checkout@v4
       - name: "Install Go"
         uses: actions/setup-go@v5
