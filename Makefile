@@ -1,9 +1,12 @@
+IMAGE?=VGiudicelli/vehicle-server
+TAG?=dev
+
 .PHONY: all
 all: clean dist build unit_test integration_test package
 
 .PHONY: package 
 package: build 
-	docker build -t vehicle-server:1.2.0 .
+	docker build -t $(IMAGE):$(TAG) .
 
 .PHONY: clean
 clean:
