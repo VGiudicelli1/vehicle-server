@@ -16,6 +16,19 @@ jobs:
         run: |
           echo "${{steps.setup_go.outputs.go-version}}"
       - name: "build"
-        run: make all
+        run: make build
+      - name: "unit test"
+        run: make unit_test
+      - name: "integration test"
+        run: make integration_test
       - name: "verify build"
         run: ls dist/*
+      - name: "Login to Docker Hub"
+        if: contains(github.ref, 'refs/tags/')
+        uses: docker/login-action@v3
+        with:
+          username: vgiudicelli
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+      - name: "Push docker image version"
+        run: make release_docker TAG=${{ github.ref_name }}
+        if: contains(github.ref, 'refs/tags/')
