@@ -1,5 +1,9 @@
 .PHONY: all
-all: clean dist build unit_test integration_test
+all: clean dist build unit_test integration_test package
+
+.PHONY: package 
+package: build 
+	docker build -t vehicle-server:1.2.0 .
 
 .PHONY: clean
 clean:
